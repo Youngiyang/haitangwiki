@@ -1,13 +1,7 @@
 class UsersController < ApplicationController
-  def new
-    @user = User.new
+  def signout
   end
 
-  def create
-
-  end
-
-  def show
-    @user = User.find(params[:id])
+  def login
   end
 end

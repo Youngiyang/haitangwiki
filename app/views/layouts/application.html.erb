@@ -6,8 +6,47 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
-<%= yield %>
+<body calss="top">
+<div id="wrapper">
+<div class="login">
+  <%= yield %>
+</div>
+
+<footer class="footer">
+  <div class="copyright">COPYRIGHT &copy; SAKUZAN. ALL RIGHTS RESERVED.</div>
+</footer>
+
+</div>
+
+
+<script src="https://maps.googleapis.com/maps/api/js"></script>
+<script src="asset/lib/jquery/jquery.lib.js"></script>
+<script src="asset/lib/velocity/velocity.min.js"></script>
+<script src="asset/lib/jquery.browser.min.js"></script>
+<script src="asset/lib/bxslider/jquery.bxslider.min.js"></script>
+<script src="asset/js/base.js"></script>
+<script src="js/index.js"></script>
+<script src="asset/js/ga.js"></script>
+<script type="text/javascript">
+var wait=60;
+function time(o) {
+  if (wait == 0) {
+      o.removeAttribute("disabled");
+      o.value="免费获取验证码";
+      wait = 60;
+  } else {
+      o.setAttribute("disabled", true);
+      o.value="重新发送(" + wait + ")";
+      wait--;
+      setTimeout(function() {
+          time(o)
+      },
+      1000)
+  }
+}
+document.getElementById("btn").onclick=function(){time(this);}
+</script>
 <%= debug(params) if Rails.env.development? %>
+
 </body>
 </html>
