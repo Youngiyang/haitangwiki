@@ -1,0 +1,21 @@
+<%- model_class = Article -%>
+<div class="page-header">
+  <h1>添加文章</h1>
+</div>
+<%= render :partial => 'form' %>
+
+<script>
+  var editor = new Simditor({
+  textarea: $('#article_content'),
+  toolbar: ['title', 'bold', 'italic', 'underline', 'strikethrough', 'color', '|', 'ol', 'ul', 'blockquote', 'code', 'table', 'link', '|','hr','indent','outdent','alignment'],
+  placeholder: '这里输入文字...',
+  pasteImage: true,
+  fileKey: 'file',
+  upload: {
+    url: '/photos',
+    params: null,
+    connectionCount: 3,
+    leaveConfirm: 'Uploading is in progress, are you sure to leave this page?'
+  }
+});
+</script>

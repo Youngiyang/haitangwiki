@@ -1,4 +1,5 @@
 class VerifyCodeController < ApplicationController
+  skip_before_filter :verify_authenticity_token, only: [:send_code]
   def send_code
     mobile = params[:mobile]
     verify_code = { code: generate_code, expire_at: Time.now + 2.minutes, auth_state: false }

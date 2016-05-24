@@ -1,0 +1,60 @@
+<%= form_for @article, :html => { :class => "form-horizontal article" } do |f| %>
+
+  <% if @article.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@article.errors.count, "error") %> prohibited this article from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @article.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :文章标题, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :title, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:title) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :文章内容, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_area :content, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:content) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :文章图片, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.file_field :img, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:img) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :文章类别, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+    <%= f.select(:categroy_id) do %>
+      <% @categroys.each do |c| -%>
+        <%= content_tag(:option, c.name, value: c.id) %>
+      <% end %>
+    <% end %>
+      <%# f.text_field :categroy_id, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:categroy_id) %>
+  </div>
+
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+      <%= f.submit '提交', :class => 'btn btn-primary' %>
+      <%= link_to t('.取消', :default => t("helpers.links.取消")),
+                articles_path, :class => 'btn btn-default' %>
+    </div>
+  </div>
+
+<% end %>

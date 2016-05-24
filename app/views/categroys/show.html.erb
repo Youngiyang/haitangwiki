@@ -1,0 +1,19 @@
+<%- model_class = Categroy -%>
+<div class="page-header">
+  <h1>类别</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:类别名称) %>:</strong></dt>
+  <dd><%= @categroy.name %></dd>
+</dl>
+
+<%= link_to t('.返回', :default => t("helpers.links.返回")),
+              categroys_path, :class => 'btn btn-default'  %>
+<%= link_to t('.修改', :default => t("helpers.links.修改")),
+              edit_categroy_path(@categroy), :class => 'btn btn-default' %>
+<%= link_to t('.删除', :default => t("helpers.links.删除")),
+              categroy_path(@categroy),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => '确定删除?')) },
+              :class => 'btn btn-danger' %>

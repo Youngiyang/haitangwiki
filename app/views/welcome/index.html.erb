@@ -1,0 +1,103 @@
+<% content_for :css, stylesheet_link_tag("style") %>
+<header class="header header--fix">
+  <div class="inner">
+    <div class="headerLogo"><a href="index.html">
+    <%= image_tag "97gun.png", alt: "97gun", style: "height: 93px;padding-top: 25px; padding-left: 55px;" %>
+    <!-- <img src="asset/img/common/97gun.png" alt="97gun" style="height: 93px;padding-top: 25px; padding-left: 55px;"></a></div> -->
+    <div class="headerMenu js-menu-btn"><a href=""><i></i></a></div>
+    <nav class="header__right">
+      <ul class="header__nav">
+        <li class="is-current"><a href="#">最新生冷</a></li>
+            <li><a href="#">经典超冷</a></li>
+            <% if current_user %>
+              <li><a href="/freezer">我的冰箱</a>
+            <% else %>
+              <li><a href="/login">我的冰箱</a>
+            <% end %>   
+            <% if current_user %>
+              <li><a href="#"><%= current_user.mobile %></a></li>
+              <li><%= link_to '退出', logout_path, method: :delete %></li>
+            <% else %>
+              <li><a href="/login">登录/注册</a></li>
+            <% end %>  
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<header class="header header--global">
+  <div class="inner">
+    <div class="headerLogo"><a href="index.html">
+    <%= image_tag "97gun.png", alt: "97gun", style: "height: 66px; padding-left: 56px;" %>
+    <!-- <img src="asset/img/common/97gun.png" alt="97gun" style="height: 66px; padding-left: 56px;"></a></div> -->
+    <div class="headerMenu js-menu-btn"><a href=""><i></i></a></div>
+    <nav class="header__right">
+      <ul class="header__nav">
+        <li class="is-current"><a href="index.html">最新生冷</a></li>
+            <li><a href="about/index.html">经典超冷</a></li>
+            <% if current_user %>
+              <li><a href="/freezer">我的冰箱</a></li>
+            <% else %>
+              <li><a href="/login">我的冰箱</a></li>
+            <% end %> 
+
+            <% if current_user %>
+              <li><a href="product/index.html"><%= current_user.mobile %></a></li>
+              <li><%= link_to '退出', logout_path, method: :delete %></li>
+            <% else %>
+              <li><a href="/login">登录/注册</a></li>
+            <% end %>  
+         </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<section class="productItem">
+  <div class="sectionVisual sectionVisual--productItem">
+  <%= image_tag "product_mv.png", height: 700, width: 1400 %>
+ </div>
+  <div class="inner">
+    <h1 class="productItem__ttl">最新生冷<span>哈哈哈哈哈</span></h1>
+    <ul class="productItem__list">
+    <% @articles.each do |a| %>
+      <li>
+        <a href="#">
+          <div class="productItem__name">
+            <span><%= a.title %></span>
+            <p>97Gun</p>
+         </div>
+          <div class="productItem__thumb thumb">
+          <%= image_tag  a.img, height: "360", width: "590" %>
+
+          </div>
+          <%= raw a.content %>
+          <div class="like-or-not">
+              <button class="nt-new-button nt-new-button-effect" style="border-radius:0px;">确实很冷</button>
+              <button class="nt-new-button nt-new-button-effect" style="border-radius:0px;">有点热啊</button>
+              <button class="nt-new-button-primary" style="border-radius:0px;float:right;position: absolute;top: 0;right: -199px;" data-id="<%= a.id %>">收藏到我的冰箱</button>
+          </div>
+          </a>
+      </li>
+      <% end %>
+    </ul>
+  </div>
+<!-- /.product -->
+</section>
+
+<div id="pagetop">
+  <div class="inner">
+    <p><a href="index.html#wrapper">回到顶部</a></p>
+  </div>
+</div>
+
+<script>
+  $('.nt-new-button-primary').each(function(){
+    $(this).click(function(){
+      var id = $(this).attr('data-id');
+     $.get('/collection',{id: id},function(data){
+      console.log(data);
+     })
+    })
+  })
+</script>

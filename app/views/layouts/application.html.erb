@@ -5,6 +5,7 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <%= yield :css %>
 </head>
 <body calss="top">
 <div id="wrapper">
@@ -16,17 +17,17 @@
   <div class="copyright">COPYRIGHT &copy; SAKUZAN. ALL RIGHTS RESERVED.</div>
 </footer>
 
+
+<script>
+ var hideNotice = function(){
+     $(".notice").fadeOut("slow");
+ }
+ setTimeout(hideNotice, 4000);
+</script>
+
 </div>
 
 
-<script src="https://maps.googleapis.com/maps/api/js"></script>
-<script src="asset/lib/jquery/jquery.lib.js"></script>
-<script src="asset/lib/velocity/velocity.min.js"></script>
-<script src="asset/lib/jquery.browser.min.js"></script>
-<script src="asset/lib/bxslider/jquery.bxslider.min.js"></script>
-<script src="asset/js/base.js"></script>
-<script src="js/index.js"></script>
-<script src="asset/js/ga.js"></script>
 <script type="text/javascript">
 var wait=60;
 function time(o) {
@@ -44,7 +45,26 @@ function time(o) {
       1000)
   }
 }
-document.getElementById("btn").onclick=function(){time(this);}
+// document.getElementById("btn").onclick=function(){time(this);}
+$('#btn').click(function(){
+  // time(this);
+  var mobile = document.getElementById("user_mobile")
+  if (mobile.value==0){
+    return false;
+  }
+  else{
+    time(this);
+    $.ajax({
+      type: 'POST',
+      url: '<%= send_code_path %>',
+      data: {
+        mobile: function(){
+          return $("#user_mobile").val()
+        }
+      }
+    })
+  }
+});
 </script>
 <%= debug(params) if Rails.env.development? %>
 
