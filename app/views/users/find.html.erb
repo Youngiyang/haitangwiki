@@ -1,0 +1,24 @@
+<div class="login-navs">
+    <div class="login-navs-logo">
+      <a href="index.html">
+        <%= image_tag 'login-logo.png', alt: "97gun" %>
+      </a>
+    <h3 class="login-title">可能是史上最全的冷知识库</h3>
+    </div>
+   
+  </div>
+   <% if flash.notice %>
+      <div class="notice"><%= flash.notice %></div>
+    <% end %>
+  <%= form_tag("find_password", class: "login-form") do%>
+    <%= text_field_tag :mobile, params[:mobile], class: "login-input login-username", placeholder: "手机号码",id: "user_mobile" %>
+    <%= text_field_tag :verify_code, params[:verify_code], class: "login-input login-code", placeholder: "验证码" %>
+    <input class="login-button login-get-code" type="button" id="btn" value="点击获取验证码">
+    <%= password_field_tag :password,params[:password], class: "login-input login-password", placeholder: "输入新密码" %>
+    <%= password_field_tag :password_confirmation , params[:password_confirmation], class: "login-input login-confirm-password", placeholder: "确认新密码" %>
+    <div class="login-check">
+      <div class="login-check-sub" style="text-align: center">
+        <%= submit_tag "确定", class: "login-button  login-button-commit" %>
+      </div>
+    </div>
+  <% end %>

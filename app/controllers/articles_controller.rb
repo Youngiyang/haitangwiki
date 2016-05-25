@@ -4,6 +4,23 @@ class ArticlesController < ApplicationController
   before_action :logged_in_user
   before_action :permission
 
+  def good
+    @article = Article.find(params[:id])
+     respond_to do |format|
+       if @article.update(good: 1)
+         format.js
+       end
+     end
+  end
+
+  def canclegood
+     @article = Article.find(params[:id])
+     respond_to do |format|
+       if @article.update(good: 0)
+         format.js
+       end
+     end
+  end
 
   def collection
     article = Article.find(params[:id])
@@ -18,7 +35,7 @@ class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.json
   def index
-    @articles = Article.all
+    @articles = Article.paginate(:page => params[:page], :per_page =>10)
   end
 
   # GET /articles/1

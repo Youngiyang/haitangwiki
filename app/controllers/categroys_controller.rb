@@ -8,7 +8,7 @@ class CategroysController < ApplicationController
   # GET /categroys
   # GET /categroys.json
   def index
-    @categroys = Categroy.all
+    @categroys = Categroy.paginate(:page => params[:page], :per_page => 10)
   end
 
   # GET /categroys/1

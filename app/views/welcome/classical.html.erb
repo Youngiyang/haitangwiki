@@ -56,6 +56,8 @@
   </div>
 </header>
 
+
+
 <section class="productItem">
   <div class="sectionVisual sectionVisual--productItem">
   <%= image_tag "product_mv.png", height: 700, width: 1400 %>
@@ -63,7 +65,7 @@
   <div class="inner">
     <h1 class="productItem__ttl">最新生冷<span>哈哈哈哈哈</span></h1>
     <ul class="productItem__list">
-    <% @collections.each do |a| %>
+    <% @classicals.each do |a| %>
       <li>
         <a href="#">
           <div class="productItem__name">
@@ -84,11 +86,10 @@
       </li>
       <% end %>
     </ul>
+     <%= will_paginate @classicals %>
   </div>
 <!-- /.product -->
 </section>
-
-  <%= will_paginate @collections %>
 
 <div id="pagetop">
   <div class="inner">
@@ -96,13 +97,3 @@
   </div>
 </div>
 
-<script>
-  $('.nt-new-button-primary').each(function(){
-    $(this).click(function(){
-      var id = $(this).attr('data-id');
-     $.get('/collection',{id: id},function(data){
-      console.log(data);
-     })
-    })
-  })
-</script>

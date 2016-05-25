@@ -1,8 +1,33 @@
 class UsersController < ApplicationController
-  skip_before_action :logged_in_user, only: [:login, :signup]
+  skip_before_action :logged_in_user, only: [:login, :signup, :find]
 
+  def find
+  end
 
   def signup
+  end
+
+  def find_password
+    verify = params[:verify_code]
+    if verify == session[:verify_code]['code']
+       user = User.find_by_mobile(params[:mobile])
+       if user
+          user.update(password: params[:password])
+          log_in user
+          if user.is_admin == true
+            redirect_to admin_path
+          else
+            redirect_to root_path
+          end
+       else
+        flash.now.notice = "账号不存在!"
+        render :forget
+      end
+
+    else
+      flash.now.notice = "验证码错误!"
+      render :forget
+    end
   end
 
   def create

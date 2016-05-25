@@ -31,6 +31,12 @@
   </tbody>
 </table>
 
-<%= link_to t('.添加', :default => t("helpers.links.添加")),
-            new_categroy_path,
-            :class => 'btn btn-primary' %>
+  <div>
+      <%= link_to t('.添加', :default => t("helpers.links.添加")),
+              new_categroy_path,
+              :class => 'btn btn-primary' %>
+  </div>
+
+      <%= will_paginate @articles %>
+
+

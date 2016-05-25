@@ -15,28 +15,18 @@
     </tr>
   </thead>
   <tbody>
-    <% @articles.each do |article| %>
-      <tr>
-        <td><%= link_to article.id, article_path(article) %></td>
-        <td><%= article.title %></td>
-        <td><%= raw article.content %></td>
-        <td><%= image_tag article.img, width: 100, height: 100 %></td>
-        <td><%= article.categroy.try(:name) %></td>
-        <td><%= article.created_at.strftime("%Y-%m-%d %H:%S:%M") %></td>
-        <td>
-          <%= link_to t('.编辑', :default => t("helpers.links.编辑")),
-                      edit_article_path(article), :class => 'btn btn-default btn-xs' %>
-          <%= link_to t('.删除', :default => t("helpers.links.删除")),
-                      article_path(article),
-                      :method => :delete,
-                      :data => { :confirm => t('.confirm', :default => t("helpers.links.确定删除？", :default => '确定删除？')) },
-                      :class => 'btn btn-xs btn-danger' %>
-        </td>
-      </tr>
-    <% end %>
+  <%= render @articles %>
+    
   </tbody>
 </table>
 
-<%= link_to t('.添加', :default => t("helpers.links.添加")),
-            new_article_path,
-            :class => 'btn btn-primary' %>
+<div>
+  <%= link_to t('.添加', :default => t("helpers.links.添加")),
+              new_article_path,
+              :class => 'btn btn-primary' %>
+</div>
+
+ <%= will_paginate @articles %>
+
+
+          

@@ -1,4 +1,5 @@
 source 'https://ruby.taobao.org'
+gem 'will_paginate', '~> 3.1.0'
 gem 'carrierwave'
 gem 'simditor'
 gem "therubyracer"

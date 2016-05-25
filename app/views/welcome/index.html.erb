@@ -8,7 +8,7 @@
     <nav class="header__right">
       <ul class="header__nav">
         <li class="is-current"><a href="#">最新生冷</a></li>
-            <li><a href="#">经典超冷</a></li>
+            <li><a href="/classical">经典超冷</a></li>
             <% if current_user %>
               <li><a href="/freezer">我的冰箱</a>
             <% else %>
@@ -34,7 +34,7 @@
     <nav class="header__right">
       <ul class="header__nav">
         <li class="is-current"><a href="index.html">最新生冷</a></li>
-            <li><a href="about/index.html">经典超冷</a></li>
+            <li><a href="/classical">经典超冷</a></li>
             <% if current_user %>
               <li><a href="/freezer">我的冰箱</a></li>
             <% else %>
@@ -52,6 +52,12 @@
     </nav>
   </div>
 </header>
+
+<div>
+  <% @categroys.each do |c| %>
+    <a href=""><%= c.name %></a>
+  <% end %>
+</div>
 
 <section class="productItem">
   <div class="sectionVisual sectionVisual--productItem">
@@ -80,12 +86,16 @@
           </a>
       </li>
       <% end %>
+
     </ul>
   </div>
 <!-- /.product -->
 </section>
+<div style="width:940px;margin: 0 auto;">
+    <%= will_paginate @articles %>
+</div>
 
-<div id="pagetop">
+<div id="pagetop" style="margin-top: 40px;">
   <div class="inner">
     <p><a href="index.html#wrapper">回到顶部</a></p>
   </div>
