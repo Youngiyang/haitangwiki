@@ -13,52 +13,17 @@
               <li><a href="/freezer">我的冰箱</a>
             <% else %>
               <li><a href="/login">我的冰箱</a>
-            <% end %>   
+            <% end %>
             <% if current_user %>
               <li><a href="#"><%= current_user.mobile %></a></li>
               <li><%= link_to '退出', logout_path, method: :delete %></li>
             <% else %>
               <li><a href="/login">登录/注册</a></li>
-            <% end %>  
+            <% end %>
       </ul>
     </nav>
   </div>
 </header>
-
-<header class="header header--global">
-  <div class="inner">
-    <div class="headerLogo"><a href="index.html">
-    <%= image_tag "97gun.png", alt: "97gun", style: "height: 66px; padding-left: 56px;" %>
-    <!-- <img src="asset/img/common/97gun.png" alt="97gun" style="height: 66px; padding-left: 56px;"></a></div> -->
-    <div class="headerMenu js-menu-btn"><a href=""><i></i></a></div>
-    <nav class="header__right">
-      <ul class="header__nav">
-        <li class="is-current"><a href="index.html">最新生冷</a></li>
-            <li><a href="/classical">经典超冷</a></li>
-            <% if current_user %>
-              <li><a href="/freezer">我的冰箱</a></li>
-            <% else %>
-              <li><a href="/login">我的冰箱</a></li>
-            <% end %> 
-
-            <% if current_user %>
-              <li><a href="product/index.html"><%= current_user.mobile %></a></li>
-              <li><%= link_to '退出', logout_path, method: :delete %></li>
-            <% else %>
-              <li><a href="/login">登录/注册</a></li>
-            <% end %>  
-         </li>
-      </ul>
-    </nav>
-  </div>
-</header>
-
-<div>
-  <% @categroys.each do |c| %>
-    <a href=""><%= c.name %></a>
-  <% end %>
-</div>
-
 <section class="productItem">
   <div class="sectionVisual sectionVisual--productItem">
   <%= image_tag "product_mv.png", height: 700, width: 1400 %>
@@ -91,7 +56,8 @@
   </div>
 <!-- /.product -->
 </section>
-<div style="width:940px;margin: 0 auto;">
+
+<div style="width:940px;margin-left:13%;">
     <%= will_paginate @articles %>
 </div>
 
@@ -100,7 +66,18 @@
     <p><a href="index.html#wrapper">回到顶部</a></p>
   </div>
 </div>
-
+<div class="area-tag">
+  <a href="" class="botton-active">全部</a>
+  <a href="">生物</a>
+  <a href="">人文</a>
+  <a href="">工科</a>
+  <a href="">天文</a>
+  <a href="">历史</a>
+  <a href="">地理</a>
+  <a href="">科学</a>
+  <a href="">医学</a>
+  <a href="">地理</a>
+</div>
 <script>
   $('.nt-new-button-primary').each(function(){
     $(this).click(function(){
@@ -110,4 +87,9 @@
      })
     })
   })
+
+$('.nt-new-button').function(){
+  $(this).html('已赞');
+
+
 </script>

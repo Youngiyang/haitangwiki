@@ -16,41 +16,13 @@
               <li class="is-current"><a href="/freezer">我的冰箱</a>
             <% else %>
               <li><a href="/login">我的冰箱</a>
-            <% end %>   
+            <% end %>
             <% if current_user %>
               <li><a href="#"><%= current_user.mobile %></a></li>
               <li><%= link_to '退出', logout_path, method: :delete %></li>
             <% else %>
               <li><a href="/login">登录/注册</a></li>
-            <% end %>  
-      </ul>
-    </nav>
-  </div>
-</header>
-
-<header class="header header--global">
-  <div class="inner">
-    <div class="headerLogo"><a href="index.html">
-    <%= image_tag "97gun.png", alt: "97gun", style: "height: 66px; padding-left: 56px;" %>
-    <!-- <img src="asset/img/common/97gun.png" alt="97gun" style="height: 66px; padding-left: 56px;"></a></div> -->
-    <div class="headerMenu js-menu-btn"><a href=""><i></i></a></div>
-    <nav class="header__right">
-      <ul class="header__nav">
-        <li ><a href="index.html">最新生冷</a></li>
-            <li><a href="about/index.html">经典超冷</a></li>
-            <% if current_user %>
-              <li class="is-current"><a href="/freezer">我的冰箱</a></li>
-            <% else %>
-              <li><a href="/login">我的冰箱</a></li>
-            <% end %> 
-
-            <% if current_user %>
-              <li><a href="product/index.html"><%= current_user.mobile %></a></li>
-              <li><%= link_to '退出', logout_path, method: :delete %></li>
-            <% else %>
-              <li><a href="/login">登录/注册</a></li>
-            <% end %>  
-         </li>
+            <% end %>
       </ul>
     </nav>
   </div>

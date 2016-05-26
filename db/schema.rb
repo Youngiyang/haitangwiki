@@ -48,7 +48,5 @@ ActiveRecord::Schema.define(version: 20160525025744) do
     t.datetime "updated_at",                      null: false
     t.string   "remember_digest"
   end
-
   add_index "users", ["mobile"], name: "index_users_on_mobile", unique: true, using: :btree
-
 end

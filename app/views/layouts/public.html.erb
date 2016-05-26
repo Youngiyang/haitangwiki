@@ -21,14 +21,19 @@
 <body class="top">
 
 <div id="wrapper">
-<%= yield %>
+  <%= yield %>
 
-<footer class="footer">
-  <div class="copyright">COPYRIGHT &copy; SAKUZAN. ALL RIGHTS RESERVED.</div>
-</footer>
+  <footer class="footer">
+    <div class="copyright">COPYRIGHT &copy; SAKUZAN. ALL RIGHTS RESERVED.</div>
+  </footer>
 
 </div>
 
 
 </body>
+<script>
+$(".area-tag a").click(function() {
+  $(this).addClass('botton-active')
+});
+</script>
 </html>

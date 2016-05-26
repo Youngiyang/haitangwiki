@@ -949,7 +949,7 @@ a:hover,a:active {
     position: relative;
     padding-top: 60px;
     height: 128px;
-    background: url("../asset/img/common/footer_bg.png") no-repeat 0 0/cover
+    background: url("../image/footer_bg.png") no-repeat 0 0/cover
 }
 
 .footer .copyright {
@@ -15260,5 +15260,31 @@ a:hover,a:active {
     margin-top: 27px;
     position: absolute;
     top: 546px;
+}
+.area-tag {
+    text-align: center;
+    position: absolute;
+    width: 60%;
+    right: 20%;
+    top:200px;
+}
+
+.area-tag a {
+    display: inline-block;
+    margin: 0 15px 25px;
+    padding: 5px 20px;
+    color: #fff;
+    background: rgba(255,255,255,0.3);
+    -webkit-border-radius: 40px;
+    border-radius: 40px;
+    text-decoration: none;
+}
+.area-tag a:hover {
+    background-color: #fff;
+     color:#000;
+    }
+.area-tag .botton-active{
+    background-color: #fff;
+    color:#000;
 }
 /*# sourceMappingURL=_maps/style.css.map */
