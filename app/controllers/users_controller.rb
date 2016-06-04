@@ -34,7 +34,7 @@ class UsersController < ApplicationController
     verify = params[:user][:verify_code]
     if verify == session[:verify_code]['code']
         user = User.new(user_params)
-        if user.save
+        if verify_rucaptcha?(user) && user.save
            log_in user
            flash.now.notice = "注册成功!"
            redirect_to welcome_index_path
@@ -47,7 +47,7 @@ class UsersController < ApplicationController
         render :signup
     end
   end
-  
+
   def signout
   end
 
@@ -65,11 +65,7 @@ class UsersController < ApplicationController
     if user && user.authenticate(params[:password])
       log_in user
       params[:remember] == '1' ? remember(user) : forget(user)
-      if user.is_admin
-        redirect_to admin_path
-      else
-        redirect_to root_path
-      end
+      redirect_to root_path
     else
       flash.now.notice = "格式有误!"
       render :login
@@ -78,8 +74,8 @@ class UsersController < ApplicationController
 
     private
       def  user_params
-        params.require(:user).permit(:mobile, :password, :is_admin, :password_confirmation, :verify_code)
+        params.require(:user).permit(:mobile, :password, :is_admin, :password_confirmation, :verify_code, :name)
       end
 
-      
+
 end

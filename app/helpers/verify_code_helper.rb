@@ -11,7 +11,7 @@ module VerifyCodeHelper
     #修改为您要发送的手机号码，多个号码用逗号隔开
     mobile = number
     #修改为您要发送的短信内容
-    text = '【97gun】您的验证码是 #{code}'
+    text = '【海棠百科】您的验证码是 #{code}'
     #智能匹配模板发送HTTP地址
     send_sms_uri = URI.parse('https://sms.yunpian.com/v2/sms/single_send.json')
     params['apikey'] = apikey
@@ -24,5 +24,6 @@ module VerifyCodeHelper
     #智能匹配模板发送
     response = Net::HTTP.post_form(send_sms_uri,params)
     print response.body + "\n"
+    JSON.load(response.body)["code"].to_i == 0
   end
 end

@@ -1,69 +1,64 @@
-<% content_for :css, stylesheet_link_tag("style") %>
-<header class="header header--fix">
-  <div class="inner">
-    <div class="headerLogo">
-      <a href="welcome/index">
-      <%= image_tag "97gun.png", alt: "97gun", style: "height: 93px;padding-top: 25px; padding-left: 55px;" %>
-      </a>
-    </div>
-    <!-- <img src="asset/img/common/97gun.png" alt="97gun" style="height: 93px;padding-top: 25px; padding-left: 55px;"></a></div> -->
-    <div class="headerMenu js-menu-btn"><a href=""><i></i></a></div>
-    <nav class="header__right">
-      <ul class="header__nav">
-        <li ><a href="#">最新生冷</a></li>
-            <li><a href="#">经典超冷</a></li>
-            <% if current_user %>
-              <li class="is-current"><a href="/freezer">我的冰箱</a>
-            <% else %>
-              <li><a href="/login">我的冰箱</a>
-            <% end %>
-            <% if current_user %>
-              <li><a href="#"><%= current_user.mobile %></a></li>
-              <li><%= link_to '退出', logout_path, method: :delete %></li>
-            <% else %>
-              <li><a href="/login">登录/注册</a></li>
-            <% end %>
-      </ul>
-    </nav>
-  </div>
-</header>
-
-<section class="productItem">
-  <div class="sectionVisual sectionVisual--productItem">
-  <%= image_tag "product_mv.png", height: 700, width: 1400 %>
- </div>
-  <div class="inner">
-    <h1 class="productItem__ttl">最新生冷<span>哈哈哈哈哈</span></h1>
-    <ul class="productItem__list">
-    <% @classicals.each do |a| %>
-      <li>
-        <a href="#">
-          <div class="productItem__name">
-            <span><%= a.title %></span>
-            <p>97Gun</p>
-         </div>
-          <div class="productItem__thumb thumb">
-          <%= image_tag  a.img, height: "360", width: "590" %>
-
-          </div>
-          <%= raw a.content %>
-          <div class="like-or-not">
-              <button class="nt-new-button nt-new-button-effect" style="border-radius:0px;">确实很冷</button>
-              <button class="nt-new-button nt-new-button-effect" style="border-radius:0px;">有点热啊</button>
-              <button class="nt-new-button-primary" style="border-radius:0px;float:right;position: absolute;top: 0;right: -199px;" data-id="<%= a.id %>">收藏到我的冰箱</button>
-          </div>
-          </a>
-      </li>
-      <% end %>
-    </ul>
-     <%= will_paginate @classicals %>
-  </div>
-<!-- /.product -->
-</section>
-
-<div id="pagetop">
-  <div class="inner">
-    <p><a href="freezer#wrapper">回到顶部</a></p>
+<div class=" am-g am-container nt-btnlist">
+  <div class="nt-wiki-top-button">
+    <a href="/"><button class="nt-new-button nt-new-button-effect">最新</button></a>
+    <a href="/classical"><button class="nt-new-button nt-new-button-effect nt-btn-primary">经典</button></a>
   </div>
 </div>
+<div class=" am-g am-container nt-word-ul">
+  <ul  class="nt-list">
+    <% @classicals.each do |t| %>
+    <li class="nt-word">
+      <ul class="nt-list">
+        <li class="nt-list-word">
+          <div>
+            <h3 class="nt-list-word-name"><%= t.title %></h3>
+            <span class="nt-list-word-mood">&nbsp;&nbsp;【<%= t.mood %>】</span>
+            <div class="nt-list-word-button">
+              <a class="am-btn am-btn-xs nt-btn-good" href="#">
+                猴儿塞雷
+                <i class="fa fa-smile-o" aria-hidden="true"></i>
+              </a>
+              <a class="am-btn am-btn-xs nt-btn-bad" href="#">
+                麻麻地
+                <i class="am-icon-meh-o"></i>
+              </a>
+            </div>
+          </div>
+        </li>
+        <li>
+          【拼音】<span><%= t.spell %></span>
+          <% if current_user && current_user.is_admin %>
+            <div class="nt-list-word-button">
+              <% if t.good == '1' %>
+                <%= link_to cancle_path(t) , class: "am-btn am-btn-xs nt-btn-cream", remote: true,id:  'good'+t.id.to_s do %>
+                  已加精<i class="am-icon-heart"></i>
+                <% end %>
+              <% else %>
+                <%= link_to good_path(t) , class: "am-btn am-btn-xs nt-btn-cream", remote: true,id:  'good'+t.id.to_s do %>
+                  加精<i class="am-icon-heart"></i>
+                <% end %>
+              <% end  %>
+              <%= link_to article_path(t), method: "delete", class:'am-btn am-btn-xs nt-btn-delete' do %>
+                  删除<i class="am-icon-trash-o"></i>
+                <% end %>
+            </div>
+          <% end %>
+        </li>
+        <li>【释义】<span><%= t.mean %></span></li>
+        <li>【例句】<span><%= t.example %></span></li>
+        <% if current_user && current_user.is_admin %>
+          <li class="nt-list-word-id">ID: <span><%= t.user.name %></span></li>
+        <% end %>
+      </ul>
+    </li>
+    <% end %>
+  </ul>
+</div>
 
+<div class="am-g am-container" style="height:72px;">
+  <ul data-am-widget="pagination" class="am-pagination am-pagination-default  am-text-right am-no-layout" style="padding-right: 18px;">
+      <div>
+        <%= will_paginate @classicals %>
+      </div>
+  </ul>
+</div>

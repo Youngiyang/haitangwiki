@@ -1,8 +1,7 @@
 class ArticlesController < ApplicationController
-  layout "admin"
+  layout "public"
   before_action :set_article, only: [:show, :edit, :update, :destroy]
   before_action :logged_in_user
-  before_action :permission
 
   def good
     @article = Article.find(params[:id])
@@ -35,7 +34,7 @@ class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.json
   def index
-    @articles = Article.paginate(:page => params[:page], :per_page =>10)
+    @articles = Article.order(created_at: :desc).paginate(:page => params[:page], :per_page =>10)
   end
 
   # GET /articles/1
@@ -57,15 +56,13 @@ class ArticlesController < ApplicationController
   # POST /articles.json
   def create
     @article = Article.new(article_params)
+    @article.user_id = current_user.id
 
-    respond_to do |format|
-      if @article.save
-        format.html { redirect_to @article, notice: 'Article was successfully created.' }
-        format.json { render :show, status: :created, location: @article }
-      else
-        format.html { render :new }
-        format.json { render json: @article.errors, status: :unprocessable_entity }
-      end
+    if @article.save
+      redirect_to root_path
+    else
+      format.html { render :new }
+      format.json { render json: @article.errors, status: :unprocessable_entity }
     end
   end
 
@@ -86,11 +83,8 @@ class ArticlesController < ApplicationController
   # DELETE /articles/1
   # DELETE /articles/1.json
   def destroy
-    @article.destroy
-    respond_to do |format|
-      format.html { redirect_to articles_url, notice: 'Article was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+      @article.destroy
+      redirect_to root_path
   end
 
   private
@@ -101,7 +95,7 @@ class ArticlesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def article_params
-      params.require(:article).permit(:title, :content, :img, :categroy_id)
+      params.require(:article).permit(:title, :mood, :spell, :example, :mean, :categroy_id)
     end
 
 

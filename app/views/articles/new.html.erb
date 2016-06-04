@@ -1,21 +1,54 @@
-<%- model_class = Article -%>
-<div class="page-header">
-  <h1>添加文章</h1>
-</div>
-<%= render :partial => 'form' %>
+<div style="height:676px;">
+  <div class=" am-g am-container nt-btnlist nt-add-wiki" style="margin-top:89px;">
+    <div class="nt-wiki-top-button" style="margin-left: -123px;">
+      <h3>添加百科</h3>
+    </div>
+    <%= form_for @article, :html => { :class => "am-form am-form-horizontal" } do |f| %>
+      <div style="margin-left: -40px; margin-top:40px;">
+        <div class="am-form-group am-u-sm-6 ">
+          <label for="doc-ipt-3" class="am-u-sm-3 am-form-label">词条:</label>
+          <div class="am-u-sm-9">
+          <%= f.text_field :title, :id => 'doc-ipt-3' %>
+          </div>
+        </div>
 
-<script>
-  var editor = new Simditor({
-  textarea: $('#article_content'),
-  toolbar: ['title', 'bold', 'italic', 'underline', 'strikethrough', 'color', '|', 'ol', 'ul', 'blockquote', 'code', 'table', 'link', '|','hr','indent','outdent','alignment'],
-  placeholder: '这里输入文字...',
-  pasteImage: true,
-  fileKey: 'file',
-  upload: {
-    url: '/photos',
-    params: null,
-    connectionCount: 3,
-    leaveConfirm: 'Uploading is in progress, are you sure to leave this page?'
-  }
-});
-</script>
+        <div class="am-form-group am-u-sm-6">
+          <label for="doc-ipt-3" class="am-u-sm-3 am-form-label">语气:</label>
+          <div class="am-u-sm-9">
+            <%= f.text_field :mood, :id => 'doc-ipt-3' %>
+          </div>
+        </div>
+      </div>
+
+      <div class="am-form-group am-u-sm-12">
+        <label for="doc-ipt-pwd-2" class="am-u-sm-1 am-form-label">拼音:</label>
+        <div class="am-u-sm-11">
+          <%= f.text_field :spell, :id => 'doc-ipt-pwd-2' %>
+        </div>
+      </div>
+
+      <div class="am-form-group am-u-sm-12">
+        <label for="doc-ipt-pwd-2" class="am-u-sm-1 am-form-label">释义:</label>
+        <div class="am-u-sm-11">
+          <%= f.text_area :mean, rows: 5 %>
+        </div>
+      </div>
+
+      <div class="am-form-group am-u-sm-12">
+        <label for="doc-ipt-pwd-2" class="am-u-sm-1 am-form-label">例句:</label>
+        <div class="am-u-sm-11">
+          <%= f.text_area :example, rows: 5 %>
+        </div>
+      </div>
+
+
+
+      <div class="am-form-group">
+        <div class="nt-btn-submit" style="text-align: right; padding-right: 36px;">
+          <a class="am-btn nt-btn-bad" href="#">放弃</a>
+          <%= f.submit '提交', :class => 'am-btn nt-btn-good', style: "margin-left:25px;background-color: #fff" %>
+        </div>
+      </div>
+   <% end %>
+  </div>
+</div>

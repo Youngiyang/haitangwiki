@@ -20,5 +20,7 @@ Rails.application.routes.draw do
   get 'classical' => 'welcome#classical'
   get 'find' => 'users#find'
   post 'find_password' => 'users#find_password'
+  get 'about' => 'welcome#about'
+  mount RuCaptcha::Engine => "/rucaptcha"
 
 end

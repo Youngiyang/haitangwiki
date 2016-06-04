@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Login</title>
-  <%# stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <title>海棠百科</title>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => false %>
   <%= csrf_meta_tags %>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => false %>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-  <%= yield :css %>
   <script>
   (function(docs) {
     if(navigator.userAgent.indexOf('iPad') != -1) {
@@ -18,18 +16,73 @@
   }(document));
   </script>
 </head>
-<body class="top">
+<body>
+<header class="am-topbar am-topbar-fixed-top nt-topbar">
+    <div class="am-container">
+        <h1 class="am-topbar-brand nt-topbar-brand">
+            <a href="#">
+                <%= image_tag 'logo.png'%>
+            </a>
+        </h1>
+        <div class="am-topbar-left nt-selectcity">
+            一部鲜美的网络词典
+        </div>
+        <div class="am-topbar-right nt-rightnav">
+            <%= link_to '首页', root_path %> |
+            <%= link_to '发布百科', new_article_path %> |
+            <%= link_to '关于', about_path %> |
 
-<div id="wrapper">
-  <%= yield %>
+            <% if current_user %>
+            <a href="#"><%= current_user.name %></a> |
+            <%= link_to '退出', logout_path, method: :delete %>
+            <% else %>
+              <%= link_to '登录', login_path %> |
+              <%= link_to '注册', signup_path  %>
+            <% end %>
+        </div>
+      <script>
+          $(".am-dropdown").css("position", "absolute");
+          $(".am-dropdown").css("left", $(".nt-mine").offset().left+"px");
+          $(".am-dropdown").css("top", $(".nt-mine").offset().top+30+"px");
+          $(".nt-mine").click(function(e){
+          if($(".am-dropdown ul").css("display")=="none"){
+              $(".am-dropdown ul").show();
+             $("body").one("click",function(){
+                  $(".am-dropdown ul").hide();
+              })
+          }
+          e.stopPropagation();
+          });
+      </script>
+    </div>
+</header>
+<!-- <div class="nt-sliderdiv nt-sliderdiv-yellow nt-banner-img"  >
+  <div class="am-slider am-slider-default" data-am-flexslider id="demo-slider-0">
+      <ul class="am-slides">
+          <li><%# image_tag 'banner.jpg' %></li>
+      </ul>
+  </div>
+</div> -->
+<%= yield %>
+<footer class="footer">
+    <div class="am-g am-container">
+        <div class="am-u-sm-1 nt-footer-left" >
+            <a href="#">
+               <%= image_tag 'logo.png', width:'110px' %>
+            </a>
+        </div>
+        <div class="am-u-sm-6 nt-aboutus">
+            <div class="am-text-center nt-footcube"><a href="#">关于我们</a></div>
+            <div class="am-text-center nt-footcube"><a href="#">诚邀伙伴</a></div>
+            <div class="am-text-center nt-footcube"><a href="#">服务协议</a></div>
+            <div class="am-text-center nt-footcube"><a href="#">联系方式</a></div>
+            <div class="am-u-sm-12 am-text-left nt-copyright">
+                copyright © 大灵猫工作室 备案号：粤ICP备16040506号
+            </div>
 
-  <footer class="footer">
-    <div class="copyright">COPYRIGHT &copy; SAKUZAN. ALL RIGHTS RESERVED.</div>
-  </footer>
-
-</div>
-
-
+        </div>
+    </div>
+</footer>
 </body>
 <script>
 $(".area-tag a").click(function() {

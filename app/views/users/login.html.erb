@@ -1,10 +1,11 @@
+<% content_for :css, stylesheet_link_tag("users") %>
 <div class="login">
   <div class="login-navs">
       <div class="login-navs-logo">
         <a href="index.html">
-        <%= image_tag 'login-logo.png', alt: '97gun' %>
+        <%= image_tag 'logo.png', alt: '97gun' %>
         </a>
-      <h3 class="login-title">可能是史上最全的冷知识库</h3>
+      <h3 class="login-title">一部鲜美的网络词典</h3>
       </div>
       <ul class="login-tab">
         <li><a href="" class="active" >登&nbsp;录</a></li>
@@ -20,14 +21,14 @@
           <%= check_box_tag  "rember", 1, params[:remember_me]%>
           <%= label_tag :rember, "记住密码" %>
           <%= submit_tag "登录", class: "login-button login-login" %>
-          <div class="">
-                <a href="javascript:;" class="toggle-form">
-                <div class="">
-                </div>
-                还没注册帐户？点击注册</a>
-                &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;
-                <a href="/find">找回密码</a>
-              </div>
+          <div style="margin-top:10px;">
+            <div style="float:left">
+              <a href="javascript:;" class="toggle-form">还没注册帐户？点击注册</a>
+            </div>
+            <div style="float:right">
+              <a href="/find">找回密码</a>
+            </div>
+          </div>
         </div>
       </div>
     <% end %>

@@ -99,12 +99,11 @@ a {
 }
 .login-code {
   border-top:#e6e6e6 1px solid;
-  border-bottom:#e6e6e6 1px solid;
 }
 .login-get-code {
  position: absolute;
  right: -1px;
- top: 83px;
+ top: 41px;
 }
 .login-password {
   border-top:#e6e6e6 1px solid;
@@ -149,7 +148,8 @@ a {
 
 .footer {
     position: relative;
-    height: 100px;
+    padding-top: 60px;
+    height: 128px;
     background: image_tag("footer_bg.png") no-repeat 0 0/cover
 }
 

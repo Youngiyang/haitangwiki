@@ -9,22 +9,20 @@ default: &default
 development:
   <<: *default
   host: localhost
-  database: common_development
+  database: haitang_development
   username: postgres
   password: postgres1234
 
 test:
   <<: *default
   host: localhost
-  database: common_test
+  database: haitang_test
   username: postgres
   password: postgres1234
 
 production:
   <<: *default
-  host: <%= ENV['PLAYMALL_DATABASE_HOST'] %>
-  su_username: postgres
-  su_password: <%= ENV['SU_DATABASE_PASSWORD'] %>
-  database: common_development
+  host: 127.0.0.1
+  database: haitang
   username: youngi
-  password: <%= ENV['PLAYMALL_DATABASE_PASSWORD'] %>
+  password: Qq1234567

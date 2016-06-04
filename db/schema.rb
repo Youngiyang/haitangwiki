@@ -11,15 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160525025744) do
+ActiveRecord::Schema.define(version: 20160601153759) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "articles", force: :cascade do |t|
     t.string   "title"
-    t.text     "content"
-    t.string   "img"
+    t.string   "mood"
+    t.string   "spell"
+    t.text     "mean"
+    t.text     "example"
     t.integer  "categroy_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
@@ -47,6 +49,9 @@ ActiveRecord::Schema.define(version: 20160525025744) do
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
     t.string   "remember_digest"
+    t.string   "name"
   end
+
   add_index "users", ["mobile"], name: "index_users_on_mobile", unique: true, using: :btree
+
 end
