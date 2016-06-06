@@ -36,15 +36,16 @@ class UsersController < ApplicationController
         user = User.new(user_params)
         if verify_rucaptcha?(user) && user.save
            log_in user
-           flash.now.notice = "注册成功!"
-           redirect_to welcome_index_path
+      	   redirect_to root_path
         else
           flash.now.notice = "格式有误!"
-          render :signup
+	  render js:"alert('图形验证码错误')"
+         # render :signup
         end
       else
         flash.now.notice = "验证码错误!"
-        render :signup
+	render js:"alert('图形验证码错误')"        
+	#render :signup
     end
   end
 

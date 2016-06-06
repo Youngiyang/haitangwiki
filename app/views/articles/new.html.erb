@@ -40,6 +40,14 @@
           <%= f.text_area :example, rows: 5 %>
         </div>
       </div>
+       <% if current_user && current_user.is_admin %>
+      <div class="am-form-group am-u-sm-12">
+        <label for="doc-ipt-pwd-2" class="am-u-sm-1 am-form-label">ID:</label>
+        <div class="am-u-sm-11">
+          <%= f.text_field :author, :id => 'doc-ipt-pwd-2' %>
+        </div>
+      </div>
+      <% end %>
 
 
 

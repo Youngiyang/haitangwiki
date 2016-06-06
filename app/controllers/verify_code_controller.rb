@@ -5,7 +5,7 @@ class VerifyCodeController < ApplicationController
     verify_code = { code: generate_code, expire_at: Time.now + 2.minutes, auth_state: false }
     if VerifyCodeHelper.send_auth_code_sms mobile, verify_code[:code]
       session[:verify_code] = verify_code
-      render js: "alert(#{session[:verify_code][:code]})"
+      render js: "alert('手机验证码已发送，请注意查收')"
     else
       render js: "alert('手机发送验证码失败')"
     end

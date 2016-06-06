@@ -1,6 +1,6 @@
 module VerifyCodeHelper
   def self.send_auth_code_sms number, code
-    unless Rails.env == 'production'
+   unless Rails.env == 'production'
       return true
     end
     require 'net/http'
@@ -11,7 +11,7 @@ module VerifyCodeHelper
     #修改为您要发送的手机号码，多个号码用逗号隔开
     mobile = number
     #修改为您要发送的短信内容
-    text = '【海棠百科】您的验证码是 #{code}'
+    text = "【海棠百科】您的验证码是#{code}"
     #智能匹配模板发送HTTP地址
     send_sms_uri = URI.parse('https://sms.yunpian.com/v2/sms/single_send.json')
     params['apikey'] = apikey

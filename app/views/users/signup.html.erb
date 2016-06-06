@@ -1,14 +1,14 @@
 <% content_for :css, stylesheet_link_tag("users") %>
 <div class="login-navs">
     <div class="login-navs-logo">
-      <a href="index.html">
+      <a href="#">
         <%= image_tag 'logo.png', alt: "海棠百科" %>
       </a>
     <h3 class="login-title">一部鲜美的网络词典</h3>
     </div>
     <ul class="login-tab">
       <li><a href="/login"  >登&nbsp;录</a></li>
-      <li><a href="/signin" class="active" >注&nbsp;册</a></li>
+      <li><a href="/signup" class="active" >注&nbsp;册</a></li>
     </ul>
   </div>
    <% if flash.notice %>
@@ -25,7 +25,7 @@
     <%= f.password_field :password_confirmation , class: "login-input login-confirm-password", placeholder: "确认密码" %>
     <div class="login-check">
       <div class="login-check-sub">
-        <input type="checkbox" name="" id="">
+        <input type="checkbox" name="" id="" checked="checked">
         <label for="">我已阅读并同意<a href="">《海棠百科用户服务条款》</a></label>
         <%= f.submit "注册", class: "login-button  login-button-commit" %>
         <div class="">
