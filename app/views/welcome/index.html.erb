@@ -46,7 +46,17 @@
         </li>
         <li>【释义】<span><%= t.mean %></span></li>
         <li>【例句】<span><%= t.example %></span></li>
-        <% if current_user && current_user.is_admin %>
+        <% if t.user && t.user.is_admin %>
+          <li class="nt-list-word-id">ID:
+            <span>
+            <% if t.author.present?%>
+              <%= t.author %>
+            <% else %>
+              <%= t.user.name %>
+            <% end %>
+            </span>
+          </li>
+        <% else %>
           <li class="nt-list-word-id">ID: <span><%= t.user.name %></span></li>
         <% end %>
       </ul>
@@ -62,4 +72,11 @@
       </div>
   </ul>
 </div>
-
+<script>
+  $('.nt-btn-good').click(function() {
+    alert("谢谢支持😃");
+  });
+    $('.nt-btn-bad').click(function() {
+    alert("我们会再接再厉的😢");
+  });
+</script>
