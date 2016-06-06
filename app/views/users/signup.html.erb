@@ -19,14 +19,14 @@
     <%= f.text_field :mobile, class: "login-input login-username", placeholder: "手机号码" %>
     <%= f.text_field :verify_code, class: "login-input login-code", placeholder: "验证码" %>
     <input class="login-button login-get-code" type="button" id="btn" value="点击获取验证码">
-    <%= rucaptcha_input_tag(placeholder: '输入图形验证码', style:"outline:none;width:80%;height:40px;font-size:15px;") %>
+    <%= rucaptcha_input_tag(placeholder: '输入图形验证码', style:"outline:none;width:74%;height:50px;font-size:15px;") %>
     <%= rucaptcha_image_tag(alt: 'Captcha') %>
     <%= f.password_field :password, class: "login-input login-password", placeholder: "输入密码" %>
     <%= f.password_field :password_confirmation , class: "login-input login-confirm-password", placeholder: "确认密码" %>
     <div class="login-check">
       <div class="login-check-sub">
         <input type="checkbox" name="" id="">
-        <label for="">我已阅读并同意<a href="">《97gun用户服务条款》</a></label>
+        <label for="">我已阅读并同意<a href="">《海棠百科用户服务条款》</a></label>
         <%= f.submit "注册", class: "login-button  login-button-commit" %>
         <div class="">
               <a href="javascript:;" class="toggle-form">

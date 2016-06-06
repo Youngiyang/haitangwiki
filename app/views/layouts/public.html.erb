@@ -30,7 +30,7 @@
         <div class="am-topbar-right nt-rightnav">
             <%= link_to '首页', root_path %> |
             <%= link_to '发布百科', new_article_path %> |
-            <%= link_to '关于', about_path %> |
+            <%# link_to '关于', about_path %>
 
             <% if current_user %>
             <a href="#"><%= current_user.name %></a> |
@@ -72,14 +72,7 @@
             </a>
         </div>
         <div class="am-u-sm-6 nt-aboutus">
-            <div class="am-text-center nt-footcube"><a href="#">关于我们</a></div>
-            <div class="am-text-center nt-footcube"><a href="#">诚邀伙伴</a></div>
-            <div class="am-text-center nt-footcube"><a href="#">服务协议</a></div>
-            <div class="am-text-center nt-footcube"><a href="#">联系方式</a></div>
-            <div class="am-u-sm-12 am-text-left nt-copyright">
-                copyright © 大灵猫工作室 备案号：粤ICP备16040506号
-            </div>
-
+            <div class="am-text-center nt-footcube"><a href="http://www.miitbeian.gov.cn">备案号：粤ICP备16040506号</a></div>
         </div>
     </div>
 </footer>
