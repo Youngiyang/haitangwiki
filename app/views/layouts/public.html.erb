@@ -28,16 +28,16 @@
             一部鲜美的网络词典
         </div>
         <div class="am-topbar-right nt-rightnav">
-            <%= link_to '首页', root_path %> |
-            <%= link_to '发布百科', new_article_path %> |
+            <%# link_to '首页', root_path %>
+            <%# link_to '发布百科', new_article_path %>
             <%# link_to '关于', about_path %>
 
             <% if current_user %>
-            <a href="#"><%= current_user.name %></a> |
-            <%= link_to '退出', logout_path, method: :delete %>
+            <a href="#"><%# current_user.name %></a>
+            <%# link_to '退出', logout_path, method: :delete %>
             <% else %>
-              <%= link_to '登录', login_path %> |
-              <%= link_to '注册', signup_path  %>
+              <%# link_to '登录', login_path %>
+              <%# link_to '注册', signup_path  %>
             <% end %>
         </div>
       <script>
@@ -72,7 +72,7 @@
             </a>
         </div>
         <div class="am-u-sm-6 nt-aboutus">
-            <div class="am-text-center nt-footcube" style="float: right;"><a href="http://www.miit.gov.cn/">备案号:粤ICP备16040506号</a>
+            <div class="am-text-center nt-footcube" style="float: right;"><a href="http://www.miit.gov.cn/">备案号:粤ICP备16040506-1号</a>
             </div>
         </div>
     </div>
